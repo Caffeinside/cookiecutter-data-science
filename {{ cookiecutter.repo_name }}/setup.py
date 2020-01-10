@@ -6,8 +6,8 @@ setup(
     description='{{ cookiecutter.description }}',
     packages=find_packages(),
     setup_requires=['setuptools_scm'],
+    python_requires='~={{ cookiecutter.python_version }}',
     install_requires=['python-dotenv'],
     extras_require={'tests': ['pytest']},
-    version='0.1.0',
-    license='{% if cookiecutter.open_source_license == 'MIT' %}MIT{% elif cookiecutter.open_source_license == 'BSD-3-Clause' %}BSD-3{% endif %}'
+    version='0.1.0'
 )

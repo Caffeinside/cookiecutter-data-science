@@ -15,7 +15,6 @@ def try_cookiecutter(params: List[str], output_dir: str = "try") -> str:
         "author_name": "author_name",
         "description": "A short description of the project.",
         "open_source_license": "MIT",
-        "python_interpreter": "python3",
         "docker_registry": "docker_registry",
         "deploy_server": "deploy_server",
         "deploy_path": "deploy_path"
