@@ -3,7 +3,7 @@ version: '3'
 services:
     postgres:
         image: postgres:9.6
-        container_name: {{cookiecutter.project_slug}}_postgres
+        container_name: {{cookiecutter.repo_name}}_postgres
         restart: always
         environment:
             - POSTGRES_USER=${POSTGRES_USER:-airflow}
@@ -16,11 +16,11 @@ services:
     webserver:
         build:
             args:
-              - VENV={{cookiecutter.project_slug}}
+              - VENV={{cookiecutter.repo_name}}
             context: ..
             dockerfile: docker/Dockerfile
-        container_name: {{cookiecutter.project_slug}}_app
-        image: {{cookiecutter.docker_registry}}/{{cookiecutter.project_slug}}_app
+        container_name: {{cookiecutter.repo_name}}_app
+        image: {{cookiecutter.docker_registry}}/{{cookiecutter.repo_name}}_app
         restart: always
         depends_on:
             - postgres
@@ -41,7 +41,7 @@ services:
         build:
             context: ..
             dockerfile: docker/Dockerfile
-        container_name: {{cookiecutter.project_slug}}_lab
+        container_name: {{cookiecutter.repo_name}}_lab
         restart: always
         environment:
             - LOAD_EX=n

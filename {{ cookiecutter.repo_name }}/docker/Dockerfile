@@ -31,7 +31,7 @@ COPY setup.py /app/setup.py
 COPY Makefile /app
 COPY README.md /app
 COPY docker/entrypoint.sh /
-COPY {{cookiecutter.project_slug}} /app/{{cookiecutter.project_slug}}
+COPY {{cookiecutter.repo_name}} /app/{{cookiecutter.repo_name}}
 COPY airflow /app/airflow
 COPY scripts /app/scripts
 COPY tests /app/tests
@@ -39,8 +39,8 @@ COPY tests /app/tests
 RUN chmod +x /entrypoint.sh
 
 WORKDIR /app
-RUN git config --global user.email "{{cookiecutter.project_slug}}"
-RUN git config --global user.name "{{cookiecutter.project_slug}}"
+RUN git config --global user.email "{{cookiecutter.repo_name}}"
+RUN git config --global user.name "{{cookiecutter.repo_name}}"
 RUN make configure
 RUN source /opt/conda/bin/activate ${VENV} && make requirements
 

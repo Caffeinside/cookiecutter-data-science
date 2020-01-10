@@ -3,7 +3,7 @@ version: '3'
 services:
     postgres:
         image: postgres:9.6
-        container_name: {{cookiecutter.project_slug}}_postgres
+        container_name: {{cookiecutter.repo_name}}_postgres
         restart: always
         environment:
             - POSTGRES_USER=${POSTGRES_USER:-airflow}
@@ -14,7 +14,7 @@ services:
             - /var/lib/postgresql/data/pgdata
 
     webserver:
-        image: {{cookiecutter.docker_registry}}/{{cookiecutter.project_slug}}_app:${APP_VERSION}
+        image: {{cookiecutter.docker_registry}}/{{cookiecutter.repo_name}}_app:${APP_VERSION}
         restart: always
         depends_on:
             - postgres
