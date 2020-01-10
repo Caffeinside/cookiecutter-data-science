@@ -1,4 +1,4 @@
-.PHONY: clean lint requirements
+.PHONY: clean requirements
 
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PROJECT_NAME = {{ cookiecutter.repo_name }}
