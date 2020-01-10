@@ -1,4 +1,4 @@
-.PHONY: clean data lint requirements sync_data_to_s3 sync_data_from_s3
+.PHONY: clean lint requirements
 
 #################################################################################
 # GLOBALS                                                                       #
@@ -22,12 +22,7 @@ endif
 
 ## Install Python Dependencies
 requirements: test_environment
-	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
-	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
-
-## Make Dataset
-data: requirements
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
+	$(PYTHON_INTERPRETER) -m pip install -e .[tests]
 
 ## Delete all compiled Python files
 clean:
@@ -38,22 +33,6 @@ clean:
 lint:
 	flake8 src
 
-## Upload Data to S3
-sync_data_to_s3:
-ifeq (default,$(PROFILE))
-	aws s3 sync data/ s3://$(BUCKET)/data/
-else
-	aws s3 sync data/ s3://$(BUCKET)/data/ --profile $(PROFILE)
-endif
-
-## Download Data from S3
-sync_data_from_s3:
-ifeq (default,$(PROFILE))
-	aws s3 sync s3://$(BUCKET)/data/ data/
-else
-	aws s3 sync s3://$(BUCKET)/data/ data/ --profile $(PROFILE)
-endif
-
 ## Set up python interpreter environment
 create_environment:
 ifeq (True,$(HAS_CONDA))
@@ -63,7 +42,7 @@ ifeq (3,$(findstring 3,$(PYTHON_INTERPRETER)))
 else
 	conda create --name $(PROJECT_NAME) python=2.7
 endif
-		@echo ">>> New conda env created. Activate with:\nsource activate $(PROJECT_NAME)"
+		@echo ">>> New conda env created. Activate with:\nconda activate $(PROJECT_NAME)"
 else
 	$(PYTHON_INTERPRETER) -m pip install -q virtualenv virtualenvwrapper
 	@echo ">>> Installing virtualenvwrapper if not already installed.\nMake sure the following lines are in shell startup file\n\
@@ -73,11 +52,11 @@ else
 endif
 
 ## Test python environment is setup correctly
-test_environment:
-	$(PYTHON_INTERPRETER) test_environment.py
+test_environment: create_environment
+	$(PYTHON_INTERPRETER) tests/test_environment.py
 
 #################################################################################
-# PROJECT RULES                                                                 #
+# PROJECT SPECIFIC RULES                                                        #
 #################################################################################
 
 
@@ -87,23 +66,9 @@ test_environment:
 #################################################################################
 
 .DEFAULT_GOAL := help
-
-# Inspired by <http://marmelab.com/blog/2016/02/29/auto-documented-makefile.html>
-# sed script explained:
-# /^##/:
-# 	* save line in hold space
-# 	* purge line
-# 	* Loop:
-# 		* append newline + line to hold space
-# 		* go to next line
-# 		* if line starts with doc comment, strip comment character off and loop
-# 	* remove target prerequisites
-# 	* append hold space (+ newline) to line
-# 	* replace newline plus comments by `---`
-# 	* print line
-# Separate expressions are necessary because labels cannot be delimited by
-# semicolon; see <http://stackoverflow.com/a/11799865/1968>
 .PHONY: help
+
+## Print all majors target
 help:
 	@echo "$$(tput bold)Available rules:$$(tput sgr0)"
 	@echo
