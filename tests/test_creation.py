@@ -85,22 +85,22 @@ class TestCookieSetup(object):
 
     def test_folders(self):
         expected_dirs = [
+            'airflow',
             'data',
             'data/external',
             'data/interim',
             'data/processed',
             'data/raw',
+            'data/reference',
+            'deploy',
+            'docker',
             'docs',
             'models',
             'notebooks',
-            'references',
-            'reports',
-            'reports/figures',
+            'pipeline',
+            'scripts',
             'src',
-            'src/data',
-            'src/features',
-            'src/models',
-            'src/visualization',
+            'tests',
         ]
 
         ignored_dirs = [
