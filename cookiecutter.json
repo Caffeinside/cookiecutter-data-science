@@ -8,3 +8,9 @@
     "aws_profile": "default",
     "python_interpreter": ["python3", "python"]
 }
+
+// project_slug
+// docker_registry
+
+// deploy_server
+// deploy_path
