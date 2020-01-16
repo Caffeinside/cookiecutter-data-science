@@ -1,0 +1,23 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-16.04'
+
+steps:
+- script: |
+    make create_environment
+    export PATH="/usr/share/miniconda/bin:$PATH"
+    echo $PATH
+    source activate {{ cookiecutter.repo_name }}
+    echo $(which python)
+    python --version
+    make requirements
+    echo Running unit tests
+    pytest tests
+  displayName: 'Install requirements and run unit tests'
