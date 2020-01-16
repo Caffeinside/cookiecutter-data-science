@@ -7,7 +7,9 @@ setup(
     packages=find_packages(),
     setup_requires=['setuptools_scm'],
     python_requires='~={{ cookiecutter.python_version }}',
-    install_requires=['python-dotenv'],
+    install_requires=['python-dotenv',
+                      # example librairies
+                      'streamlit', 'pandas', 'numpy', 'altair'],
     extras_require={'tests': ['pytest']},
     version='0.1.0'
 )
