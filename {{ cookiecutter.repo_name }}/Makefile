@@ -1,4 +1,4 @@
-.PHONY: clean requirements
+.PHONY: clean requirements create_environment
 
 PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PROJECT_NAME = {{ cookiecutter.repo_name }}
@@ -13,12 +13,8 @@ endif
 #################################################################################
 
 ## Install Python Dependencies
-requirements: test_environment
+requirements:
 	python pip install -e .[tests]
-
-## Test python environment is setup correctly
-test_environment: create_environment
-	python tests/test_environment.py
 
 ## Set up python interpreter environment
 create_environment:
