@@ -14,7 +14,7 @@ endif
 
 ## Install Python Dependencies
 requirements:
-	python pip install -e .[tests]
+	pip install -e .[tests]
 
 ## Set up python interpreter environment
 create_environment:

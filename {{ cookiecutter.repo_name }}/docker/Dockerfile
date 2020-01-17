@@ -1,19 +1,20 @@
 FROM continuumio/miniconda3:latest
-SHELL ['/bin/bash', '-c']
+SHELL ["/bin/bash", "-c"]
 
 EXPOSE 8501
 
 RUN apt-get update -y
+RUN apt-get install -y build-essential
 RUN mkdir /app
 
 COPY setup.py /app/setup.py
-COPY Makefile /app
+COPY Makefile /app/Makefile
 COPY src /app/src
 
 WORKDIR /app
 
 RUN make create_environment
-RUN conda activate {{cookiecutter.repo_name}}
+RUN source activate ds_lab_2
 RUN make requirements
 
-CMD streamlit app/src/example.py
+CMD streamlit run src/example.py
