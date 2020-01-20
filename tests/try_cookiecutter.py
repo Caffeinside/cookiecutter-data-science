@@ -10,14 +10,14 @@ from cookiecutter.main import cookiecutter
 def try_cookiecutter(params: List[str], output_dir: str = "try") -> str:
     # All default value to false
     options = {
-        "project_name": "project_name",
-        "repo_name": "repo_name",
-        "author_name": "author_name",
-        "description": "A short description of the project.",
-        "open_source_license": "MIT",
-        "docker_registry": "docker_registry",
-        "deploy_server": "deploy_server",
-        "deploy_path": "deploy_path"
+        "project_name": "ds_lab_2",
+        "repo_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+        "author_name": "BASA",
+        "description": "This is a description",
+        "python_version": "3.7",
+        "docker_registry": "dslabocto.azurecr.io",
+        "docker_registry_service_connection": "dslabOcto",
+        "deploy_server_service_connection": "BASA-dslab-webapp"
     }
     options.update(dict(s.split('=', 1) for s in params))
     return cookiecutter(
