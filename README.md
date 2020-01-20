@@ -3,14 +3,14 @@
 This project was initially started as a fork of the [Cookiecutter Data Science](http://drivendata.github.io/cookiecutter-data-science/),
 which describes itself as _"a logical, reasonably standardized, but flexible project structure for doing and sharing data science work"_.
 
-It was then completed to include many of which are considered best practices to industrialize data science project, such
+It was then completed to include many of which are considered best practices to industrialize data science projects, such
 as unit and integration testing, CI/CD, workflow-as-code, packaging, etc.
 
 
 ### Requirements to use the cookiecutter template:
 -----------
  - Python 3
- - [Cookiecutter Python package](http://cookiecutter.readthedocs.org/en/latest/installation.html) >= 1.4.0: This can be installed with pip by or conda depending on how you manage your Python packages:
+ - [Cookiecutter Python package](http://cookiecutter.readthedocs.org/en/latest/installation.html): this can be installed with pip by or conda depending on how you manage your Python packages:
 
 ``` bash
 $ pip install cookiecutter
@@ -67,8 +67,8 @@ The directory structure of your new project looks like this:
 │                                      `1.0-jqp-initial-data-exploration`
 │
 ├── pipeline
-│   ├── predict.py                  <- ML prediction worflow*
-│   └── train.py                    <- ML training worflow*
+│   ├── predict.py                  <- ML prediction worflow
+│   └── train.py                    <- ML training worflow
 │
 ├── scripts                         <- Stand-alone scripts to perform specific tasks
 │
@@ -83,9 +83,23 @@ The directory structure of your new project looks like this:
     └── test_example.py
 ```
 
-## Contributing
+## Preliminary steps to set up your CI/CD
 
-We welcome contributions!
+The template includes scripts that allow you to set up green CI and CD pipelines in minutes using Azure DevOps.
+Just follow these steps:
+
+1. Create or log in your Azure personal account
+2. Create a [new project in Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/organizations/projects/create-project?view=azure-devops&tabs=preview-page)
+3. Connect your *Docker registry*: in _Project Settings >> Service Connections_, create the connection. Use the name of
+ this connection as the _docker_registry_service_connection_ variable when you set up your template.
+4. Connect your *remote deployment server*: in _Project Settings >> Service Connections_, create the connection. Use the name of
+ this connection as the _deploy_server_service_connection_ variable when you set up your template.
+5. In _Pipelines >> New Pipeline_, create your CI and CD pipelines pointing out to the _deploy/azure-ci-pipeline.yml_ and
+_deploy/azure-cd-pipeline.yml_ files respectively.
+
+
+
+
 
 ### Installing development requirements
 ------------
