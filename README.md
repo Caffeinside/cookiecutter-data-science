@@ -1,14 +1,15 @@
-# Cookiecutter Data Science
+# Cookiecutter Data Science Industrialization
 
-_A logical, reasonably standardized, but flexible project structure for doing and sharing data science work._
+This project was initially started as a fork of the [Cookiecutter Data Science](http://drivendata.github.io/cookiecutter-data-science/),
+which describes itself as _"a logical, reasonably standardized, but flexible project structure for doing and sharing data science work"_.
 
-
-#### [Project homepage](http://drivendata.github.io/cookiecutter-data-science/)
+It was then completed to include many of which are considered best practices to industrialize data science project, such
+as unit and integration testing, CI/CD, workflow-as-code, packaging, etc.
 
 
 ### Requirements to use the cookiecutter template:
 -----------
- - Python 2.7 or 3.5
+ - Python 3
  - [Cookiecutter Python package](http://cookiecutter.readthedocs.org/en/latest/installation.html) >= 1.4.0: This can be installed with pip by or conda depending on how you manage your Python packages:
 
 ``` bash
@@ -26,10 +27,7 @@ $ conda install cookiecutter
 ### To start a new project, run:
 ------------
 
-    cookiecutter https://github.com/drivendata/cookiecutter-data-science
-
-
-[![asciicast](https://asciinema.org/a/244658.svg)](https://asciinema.org/a/244658)
+    cookiecutter https://github.com/Caffeinside/cookiecutter-data-science
 
 
 ### The resulting directory structure
@@ -39,60 +37,58 @@ The directory structure of your new project looks like this:
 
 ```
 ├── LICENSE
-├── Makefile           <- Makefile with commands like `make data` or `make train`
-├── README.md          <- The top-level README for developers using this project.
+├── Makefile                        <- Makefile with useful commands
+├── README.md                       <- The top-level README for developers using this project
+├── airflow                         <- Target folder to generate Airflow DAGs
+├── config.py                       <- The top-level config file for this project
+│
 ├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
+│   ├── external                    <- Data from third party sources
+│   ├── interim                     <- Intermediate data that has been transformed
+│   ├── processed                   <- Final outputs of the worflows
+│   ├── raw                         <- The original, immutable data dump
+│   └── reference                   <- Reference or mapping data
 │
-├── docs               <- A default Sphinx project; see sphinx-doc.org for details
+├── deploy
+│   ├── azure-cd-pipeline.yml       <- CD pipeline to retrieve Docker images and deploy the app on a remote server
+│   └── azure-ci-pipeline.yml       <- CI pipeline to run tests, build and push Docker images to a registry
 │
-├── models             <- Trained and serialized models, model predictions, or model summaries
+├── docker
+│   ├── Dockerfile                  <- Simple DockerFile for the app
+│   ├── docker-compose-dev.yml      <- Used to launch your services locally / in dev
+│   └── docker-compose-prod.yml     <- Used to lauch your services in production
 │
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`.
+├── docs                            <- A default Sphinx project; see sphinx-doc.org for details
 │
-├── references         <- Data dictionaries, manuals, and all other explanatory materials.
+├── models                          <- Trained and serialized models
 │
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
+├── notebooks                       <- Jupyter notebooks. Naming convention is a number (for ordering),
+│                                      the creator's initials, and a short `-` delimited description, e.g.
+│                                      `1.0-jqp-initial-data-exploration`
 │
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
+├── pipeline
+│   ├── predict.py                  <- ML prediction worflow*
+│   └── train.py                    <- ML training worflow*
 │
-├── src                <- Source code for use in this project.
-│   ├── __init__.py    <- Makes src a Python module
-│   │
-│   ├── data           <- Scripts to download or generate data
-│   │   └── make_dataset.py
-│   │
-│   ├── features       <- Scripts to turn raw data into features for modeling
-│   │   └── build_features.py
-│   │
-│   ├── models         <- Scripts to train models and then use trained models to make
-│   │   │                 predictions
-│   │   ├── predict_model.py
-│   │   └── train_model.py
-│   │
-│   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-│       └── visualize.py
+├── scripts                         <- Stand-alone scripts to perform specific tasks
 │
-└── tox.ini            <- tox file with settings for running tox; see tox.testrun.org
+├── setup.py                        <- Makes project pip installable (pip install -e .) so src can be imported and 
+│                                      dependencies installed
+│
+├── src                             <- Source code for use in this project
+│   ├── __init__.py                 <- Makes src a Python module
+│   └── example.py
+│
+└── tests                           <- Unit and integrations tests
+    └── test_example.py
 ```
 
 ## Contributing
 
-We welcome contributions! [See the docs for guidelines](https://drivendata.github.io/cookiecutter-data-science/#contributing).
+We welcome contributions!
 
 ### Installing development requirements
 ------------
 
     pip install -r requirements.txt
 
-### Running the tests
-------------
-
-    py.test tests
