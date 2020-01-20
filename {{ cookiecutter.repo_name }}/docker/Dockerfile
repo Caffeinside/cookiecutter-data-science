@@ -14,7 +14,7 @@ COPY src /app/src
 WORKDIR /app
 
 RUN make create_environment
-RUN source activate ds_lab_2
+RUN source activate {{ cookiecutter.repo_name }}
 RUN pip install -e .
 
 CMD streamlit run src/example.py

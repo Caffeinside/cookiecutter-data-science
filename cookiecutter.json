@@ -5,6 +5,6 @@
     "description": "A short description of the project.",
     "python_version": "3.7",
     "docker_registry": "docker_registry",
-    "deploy_server": "deploy_server",
-    "deploy_path": "deploy_path"
+    "docker_registry_service_connection": "docker_registry_service_connection",
+    "deploy_server_service_connection": "deploy_server_service_connection"
 }
