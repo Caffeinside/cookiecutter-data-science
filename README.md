@@ -90,15 +90,12 @@ Just follow these steps:
 
 1. Create or log in your Azure personal account
 2. Create a [new project in Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/organizations/projects/create-project?view=azure-devops&tabs=preview-page)
-3. Connect your *Docker registry*: in _Project Settings >> Service Connections_, create the connection. Use the name of
+3. Connect your **Docker registry**: in _Project Settings >> Service Connections_, create the connection. Use the name of
  this connection as the _docker_registry_service_connection_ variable when you set up your template.
-4. Connect your *remote deployment server*: in _Project Settings >> Service Connections_, create the connection. Use the name of
+4. Connect your **remote deployment server**: in _Project Settings >> Service Connections_, create the connection. Use the name of
  this connection as the _deploy_server_service_connection_ variable when you set up your template.
-5. In _Pipelines >> New Pipeline_, create your CI and CD pipelines pointing out to the _deploy/azure-ci-pipeline.yml_ and
+5. In _Pipelines >> New Pipeline_, create your **CI and CD pipelines** pointing out to the _deploy/azure-ci-pipeline.yml_ and
 _deploy/azure-cd-pipeline.yml_ files respectively.
-
-
-
 
 
 ### Installing development requirements
