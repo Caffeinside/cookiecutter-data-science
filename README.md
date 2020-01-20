@@ -27,7 +27,7 @@ $ conda install cookiecutter
 ### To start a new project, run:
 ------------
 
-    cookiecutter https://github.com/Caffeinside/cookiecutter-data-science
+    cookiecutter https://github.com/Caffeinside/cookiecutter-data-science-indus
 
 
 ### The resulting directory structure
