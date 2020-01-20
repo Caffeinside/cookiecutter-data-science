@@ -72,8 +72,8 @@ The directory structure of your new project looks like this:
 │
 ├── scripts                         <- Stand-alone scripts to perform specific tasks
 │
-├── setup.py                        <- Makes project pip installable (pip install -e .) so src can be imported and 
-│                                      dependencies installed
+├── setup.py                        <- Makes project pip installable (pip install -e .[tests]) so src can be imported 
+│                                      and dependencies installed
 │
 ├── src                             <- Source code for use in this project
 │   ├── __init__.py                 <- Makes src a Python module
@@ -94,7 +94,7 @@ Just follow these steps:
  this connection as the _docker_registry_service_connection_ variable when you set up your template.
 4. Connect your **remote deployment server**: in _Project Settings >> Service Connections_, create the connection. Use the name of
  this connection as the _deploy_server_service_connection_ variable when you set up your template.
-5. In _Pipelines >> New Pipeline_, create your **CI and CD pipelines** pointing out to the _deploy/azure-ci-pipeline.yml_ and
+5. In _Pipelines_, create your **CI and CD pipelines** pointing out to the _deploy/azure-ci-pipeline.yml_ and
 _deploy/azure-cd-pipeline.yml_ files respectively.
 
 
